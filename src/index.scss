@@ -5,3 +5,17 @@ html{
 *, *::after, *::before{
     box-sizing: inherit;
 }
+
+body{
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(0.75rem, calc(5vw + 1vw), 1.25rem);
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4{
+    font-family: 'Roboto', sans-serif;
+}
