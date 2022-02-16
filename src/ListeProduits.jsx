@@ -2,7 +2,7 @@ import './ListeProduits.scss';
 import Produit from './Produit';
 import lesProduits from './data/produits.json'
 
-export default function listeProduits(){
+export default function listeProduits(props){
   // Exemple avec la fonction map
   // let notes = [59.6556, 78.26, 85.264, 35.9595];
 
@@ -30,7 +30,7 @@ export default function listeProduits(){
         <h2>Nos produits</h2>
         <div className="produits">
           {
-            lesProduits.map(p => <Produit key={p.id} nom={p.nom} prix={p.prix} pid={p.id}/>)
+            lesProduits.map(p => <Produit setPanier={props.setPanier} panier={props.panier} key={p.id} panier={props.panier} nom={p.nom} prix={p.prix} pid={p.id}/>)
           }
         </div>
       </section>
