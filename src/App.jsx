@@ -9,7 +9,8 @@ function App() {
 
   // pos 0 = panier, pos 1 = pour changer le panier
   const panier = etatPanier[0];
-  const setPanier = etatPanier[1];
+
+  // const [panier, setPanier] = useState({});
 
   console.log("Etat panier : ", etatPanier);
 
@@ -28,10 +29,16 @@ function App() {
   //     }
   //   };
 
+  const [compteur, setCompteur] = useState(0);
+
   return (
     <div className="App">
-      <Entete panier={panier}/>
-      <ListeProduits panier={panier} setPanier={setPanier} />
+      <Entete panier={panier} test="Allo props"/>
+      <ListeProduits etatPanier={etatPanier} />
+      <div>
+        <span>Nombre de clics : {compteur}</span>
+        <button onClick={() => {setCompteur(compteur + 1); console.log('Compteur des clics : ', compteur)}}>Cliquez-moi</button>
+      </div>
       <PiedPage />
     </div>
   );
