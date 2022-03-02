@@ -42,7 +42,7 @@ export default function Entete({panier}) {
  * @returns Object objet contenant les 5 infos requises du panier
  */
 
-function calculerInfoPanier(){
+function calculerInfoPanier(panierAchats){
     const sousTotal = panierAchats.reduce((acc, courante) => acc + courante.qte*courante.prix, 0);
     const taxes = sousTotal * 0.14975;
     return {
