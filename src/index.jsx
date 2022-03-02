@@ -5,7 +5,7 @@ import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 
 // Changer le basename selon le serveur (local ou github)
-const baseName = (window.location.href.search(/gihub\.io/i) !== -1) ? '/panier-achats' : '';
+const baseName = (window.location.hostname.search(/gihub\.io/i) != -1) ? '/panier-achats' : '';
 
 ReactDOM.render(
   <React.StrictMode>
