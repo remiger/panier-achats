@@ -4,7 +4,7 @@ import Badge from '@mui/material/Badge';
 import { NavLink } from 'react-router-dom';
 
 // remarquez la destructuration de l objet
-export default function Entete({panier}) {    
+export default function Entete({panier, util, setUtil}) {    
     console.log("Le panier (Entete) : ", panier);
     console.log("Le tableau des valeurs du panier ", Object.values(panier));
 
@@ -29,6 +29,10 @@ export default function Entete({panier}) {
                     <div className="info"><span>Taxes</span><span>{taxes}</span></div>
                     <div className="info"><span>Total</span><span>{total}</span></div>
                 </div>
+                
+                <div>{util.displayName}</div>
+                <button>Déconnexion</button>
+
                 <Badge badgeContent={Object.values(panier).reduce((acc, article) => acc + article.qte, 0)} color="secondary">
                     <label htmlFor="cc-sommaire-panier"><ShoppingCartSharpIcon /></label>
                 </Badge>
