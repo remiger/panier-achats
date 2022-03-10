@@ -1,10 +1,14 @@
 import './Entete.scss';
 import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
 import Badge from '@mui/material/Badge';
+import Avatar from '@mui/material/Avatar';
 import { NavLink } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { authFirebase } from './firebase/init';
 
 // remarquez la destructuration de l objet
 export default function Entete({panier, util, setUtil}) {    
+    console.log("Proprietes 'user' de l'objet GoogleCredential renvoye par l'authentification federee Google : ", util);
     console.log("Le panier (Entete) : ", panier);
     console.log("Le tableau des valeurs du panier ", Object.values(panier));
 
@@ -30,8 +34,9 @@ export default function Entete({panier, util, setUtil}) {
                     <div className="info"><span>Total</span><span>{total}</span></div>
                 </div>
                 
+                <Avatar alt={util.displayName} src={util.photoURL} />
                 <div>{util.displayName}</div>
-                <button>Déconnexion</button>
+                <button onClick={() => signOut(authFirebase).then(setUtil(null))}>Déconnexion</button>
 
                 <Badge badgeContent={Object.values(panier).reduce((acc, article) => acc + article.qte, 0)} color="secondary">
                     <label htmlFor="cc-sommaire-panier"><ShoppingCartSharpIcon /></label>

@@ -5,7 +5,10 @@ import Histoire from './Histoire';
 import ListeProduits from './ListeProduits';
 import Accueil from './Accueil';
 import { useEffect, useState } from 'react';
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { authFirebase, authGoogle } from './firebase/init';
+
+import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 
 function App() {
   // Etat de lutilisateur connecte
@@ -17,9 +20,6 @@ function App() {
   // pos 0 = panier, pos 1 = pour changer le panier
   const panier = etatPanier[0];
 
-  // const [panier, setPanier] = useState({});
-
-  console.log("Etat panier : ", etatPanier);
 
   // "Persister" (sauvegarder) le panier dans localStorage
   // Utiliser le HOOK useEffect pour executer ce code de facon controlee
@@ -30,8 +30,13 @@ function App() {
    * Declenche le prochessus dauthentification avec Google Auth Provider
    */
   function connexion(){
-    
+    signInWithPopup(authFirebase, authGoogle).then(
+      objUserGoogle => setUtil(objUserGoogle.user)
+    );
   }
+
+  // Attacher un "Observateur" de changement d'etat de connexion (gestionnaire devenement de Firebase)
+  useEffect(()=>onAuthStateChanged(authFirebase, user => setUtil(user)),[])
 
   return (
     <div className="App">
